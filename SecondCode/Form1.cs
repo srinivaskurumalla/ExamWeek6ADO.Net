@@ -26,15 +26,7 @@ namespace SecondCode
             InitializeComponent();
         }
 
-        //Generating Primary Key
-        public DataColumn[] GeneratePrimaryKey(DataSet dataSet)
-        {
-            DataColumn[] dc = new DataColumn[1];
-            dc[0] = dataSet.Tables["Customer"].Columns["CustomerId"];
-            dataSet.Tables["Customer"].PrimaryKey = dc;
-
-            return dc;
-        }
+      
 
         private void Form1_Load(object sender, EventArgs e)
         {
@@ -53,42 +45,11 @@ namespace SecondCode
 
                 }
 
-               /* using(adapter = new SqlDataAdapter("Select CreditLimit,CustomerName from Customer", con))
-                {
-                    dataSet = new DataSet();
-                    adapter.Fill(dataSet, "customers");
-
-                    //Bound to combo box
-
-                    CbSort.DataSource = dataSet.Tables["customers"];
-                    CbSort.ValueMember = "CreditLimit";
-                    CbSort.Text = "--selects--";
-                }*/
+             
             }
         }
 
-        private void Filter()
-        {
-            using (con = new SqlConnection(ConfigurationManager.ConnectionStrings["dbcs2"].ConnectionString))
-            {
-                using (adapter = new SqlDataAdapter("Select * from Customer", con))
-                {
-                    dataSet = new DataSet();
-                    adapter.Fill(dataSet, "Customer");
-                    SqlCommandBuilder commandBuilder = new SqlCommandBuilder(adapter);
-
-                   /* DataTable dt = dataSet.Tables["Customer"];
-                  
-                    DataView dv = dataSet.Tables["Customer"].AsDataView();*/
-                    if (CbSort.SelectedIndex == 1)
-                    {
-
-                    }
-
-
-                }
-            }
-        }
+       
 
         private void BtnGetData_Click(object sender, EventArgs e)
         {
